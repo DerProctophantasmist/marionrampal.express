@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<!--
+        Big Picture by HTML5 UP
+        html5up.net | @n33co
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" ng-app="single.page.site" ng-controller="WebsiteCtrl as website">
+    <head>
+        <title>Marion Rampal</title>
+        <meta charset="utf-8" />
+        <link rel="alternate" href="http://www.marionrampal.com{{#if page}}/{{page}}{{/if}}" hreflang="x-default" />
+        <link rel="alternate" href="http://en.marionrampal.com{{#if page}}/{{page}}{{/if}}" hreflang="en" />
+        <link rel="alternate" href="http://fr.marionrampal.com{{#if page}}/{{page}}{{/if}}" hreflang="fr" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google-site-verification" content="jD5QUaNkx9kc4HyCoCxLlWP3xb_KYSCN3OS1VlVKXjo" />    
+        <meta property="fb:app_id" content="520054488191726" />   
+        <meta property="og:locale"  content="{{curLang}}" />      
+        <meta property="og:locale:alternate"  content="fr" />      
+        <meta property="og:locale:alternate"  content="en" />        
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="http://marionrampal.com/images/MarionRampal.MainBlue.clindoeil.jpg" />
+        <meta property="og:title" content="Marion Rampal" />
+        <meta property="og:url" content="http://www.marionrampal.com"/>
+        <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/bundle.css" />
+        <script src="/assets/js/bundle.js"></script>        
+        <meta name="description" property="og:description" content="{{#description}}{{/description}}" />
+        <base href="/"></base>
+    </head>
+    <body  viewport ng-class="{'mobile-layout':website.isMobileLayout()}" ng-init="website.locale.init('{{prefLang}}','{{forceLang}}')"> 
+<!--        <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '520054488191726',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>-->
+
+        <div>
+            <x-import-google-fonts fonts="googleFonts" > </x-import-google-fonts>
+            <x-font-style ng-repeat='section in website.sections.data'  ng-if="section.googleFont != undefined" font="section.googleFont" css-font-class=".special-font" css-selector=".section-\{{section.id}}"></x-font-style> 
+            <style type="text/css"> 
+                .menuToggle line { 
+                    stroke: \{{website.headerColor()}}; 
+                    stroke-width: 2; 
+                }
+                .menuToggle svg {    
+                    position: absolute;
+                    display: block;
+                    /*float: right;*/
+                    width: 1.4em;
+                    height: 1.4em;
+                    right: 0.7em;
+                    top: 50%;
+                    margin-top: -0.4em;
+                }
+                .title-banner span:before, .title-banner span:after {
+                    content: "";
+                    position: absolute;
+                    height: 5px;
+                    border-top: 2px solid;
+                    border-color:  \{{website.headerColor()}}; 
+                    top: 50%;
+                    width: 100vw;
+                }
+
+            </style>
+
+            <!-- Header -->
+            <header ng-style="{'background-image':website.headerImage(), 'background-position':(website.sections.topPage.bkgImgPos||''), 'color':website.headerColor()}" id="header" ng-class="{'alt':!website.isMobileLayout()}">
+
+                <!-- Logo -->
+                <h3  ng-if="!website.isMobileLayout()" class="title-banner special-font"><span> Marion Rampal — \{{website.sections.topPage.section.getname()}}</span></h3>
+
+                <!-- Nav -->
+                <nav id="nav" ng-style="{'background-color':website.menuBackground()}">
+                    <ul>                        
+                        <li ng-controller="LangPickCtrl as vm" class="menuToggle clickable">
+                            <a ng-click="vm.changeLocale()"><span ng-class="vm.classShowFlag()"></span>  \{{vm.selectedLocale}}</a>
+                        </li>
+                        <li class="special clickable">
+                            <a main-menu class="menuToggle"><span>Menu</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" >
+
+                                <line x1="0" y1="1" x2="16" y2="1" />
+                                <line x1="0" y1="7" x2="16" y2="7" />
+                                <line x1="0" y1="13" x2="16" y2="13" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </header>
+
+            <!-- Intro -->
+            <section ng-repeat='section in website.sections.data' ng-if="website.displaySection(section.id)" ng-init="sectionIndex = $index" id="\{{section.id}}" ng-class="'section-' + section.id">            
+                <x-page ng-repeat='page in section.pages' ng-include="page.template" ng-init="pageIndex = $index"></x-page>
+            </section>
+
+
+            <!-- Footer -->
+            <footer id="footer">
+
+                <!-- Icons -->
+                <ul class="actions">
+                    <li><a href="https://www.facebook.com/pagemarionrampal" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="https://soundcloud.com/marion-rampal" class="icon fa-soundcloud"><span class="label">Soundcloud</span></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCDYIvvg9blbBUXV702dCWEQ" class="icon fa-youtube"><span class="label">Youtube</span></a></li>
+<!--                    <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>-->
+                </ul>
+
+                <!-- Menu -->
+                <ul class="menu">
+                    <small><li>&copy; Marion Rampal</li><li>Artwork on Main Blue: Marc Hernandez</li><li>Photos: Martin Sarrazac</li><li>Design and Implementation: Martin Sarrazac with a kickstart from <a href="http://html5up.net">HTML5 UP</a></li></small>
+                </ul>
+
+            </footer> 
+
+    </body>
+</html>
