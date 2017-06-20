@@ -1,5 +1,9 @@
 {
-  "name": "express.marionrampal",
+  "name": "express.marionrampal",    
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DerProctophantasmist/marionrampal.express.git"
+  },
   "version": "1.0.0",
   "private": true,
   "scripts": {
