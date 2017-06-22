@@ -1,5 +1,5 @@
 {
-  "name": "express.marionrampal",    
+  "name": "express.marionrampal",
   "repository": {
     "type": "git",
     "url": "https://github.com/DerProctophantasmist/marionrampal.express.git"
@@ -10,21 +10,21 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.15.2",
-    "cookie-parser": "~1.4.3",
-    "cors": "^2.8.1",
-    "debug": "~2.2.0",
-    "express": "~4.14.0",
-    "handlebars-delimiters": "^0.1.2",
-    "hbs": "~4.0.1",
-    "morgan": "~1.7.0",
-    "nodemailer": "^2.6.4",
-    "promise": "^7.1.1",
-    "serve-favicon": "~2.3.0",
-    "validator": "^6.1.0",
-    "xoauth2": "^1.2.0"
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "cors": "latest",
+    "debug": "latest",
+    "express": "latest",
+    "handlebars-delimiters": "latest",
+    "hbs": "latest",
+    "morgan": "latest",
+    "nodemailer": "latest",
+    "promise": "latest",
+    "serve-favicon": "latest",
+    "validator": "latest",
+    "xoauth2": "latest"
   },
   "devDependencies": {
-    "hbsfy": "^2.7.0"
+    "hbsfy": "latest"
   }
 }

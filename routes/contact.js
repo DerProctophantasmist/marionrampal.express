@@ -28,30 +28,17 @@
   router.options('/', cors(corsOptions));
 
   fs.readFile(authFile, function(err, data) {
-    var auth, generator;
+    var auth;
     if (err) {
       console.log("Could not read auth data from " + authFile + ": " + err.code);
       throw err;
     }
     auth = JSON.parse(data + "");
-    generator = xoauth2.createXOAuth2Generator(auth);
-    generator.on('token', function(token) {
-      console.log('New token for %s: %s', token.user, token.accessToken);
-      auth.accessToken = token.accessToken;
-      return fs.writeFile(authFile, JSON.stringify(auth), function(err) {
-        if (err) {
-          return console.log("Could not save auth data after update: " + err.code);
-        }
-      });
-    });
-    console.log(JSON.stringify(generator));
     return router.post('/', cors(corsOptions), function(req, res, next) {
       var content, emailFrom, mailOpts, smtpTrans, subject;
       smtpTrans = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          xoauth2: generator
-        }
+        service: 'Gmail',
+        auth: auth
       });
       emailFrom = req.body.emailFrom || "";
       subject = req.body.subject || "";

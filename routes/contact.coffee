@@ -27,31 +27,29 @@ fs.readFile authFile, (err, data) ->
     console.log "Could not read auth data from " + authFile + ": " + err.code
     throw err
   auth = JSON.parse(data + "")
-  generator = xoauth2.createXOAuth2Generator(auth)
+#  generator = xoauth2.createXOAuth2Generator(auth)
 
   # listen for token updates (if refreshToken is set)
   # you probably want to store these to a db (lets write them to a file
-  generator.on( 'token', (token)->
-    console.log('New token for %s: %s', token.user, token.accessToken);
-    auth.accessToken = token.accessToken
-    fs.writeFile( authFile, JSON.stringify(auth), (err)->
-      if err
-        console.log "Could not save auth data after update: " + err.code
-    ) 
-  )
+#  generator.on( 'token', (token)->
+#    console.log('New token for %s: %s', token.user, token.accessToken);
+#    auth.accessToken = token.accessToken
+#    fs.writeFile( authFile, JSON.stringify(auth), (err)->
+#      if err
+#        console.log "Could not save auth data after update: " + err.code
+#    ) 
+#  )
   
   
-  console.log JSON.stringify(generator)
+#  console.log JSON.stringify(generator)
     
   
   
   #POST contact form. 
   router.post('/', cors(corsOptions), (req, res, next) ->
     smtpTrans = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-          xoauth2: generator
-      }
+      service: 'Gmail',
+      auth: auth
     })  
     emailFrom = req.body.emailFrom || "";
     subject = req.body.subject || "";
