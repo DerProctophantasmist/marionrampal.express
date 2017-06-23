@@ -5,9 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var contact = require('./routes/contact');
 
 var app = express();
 
@@ -16,8 +13,16 @@ console.log("ROOT DIR: "+ root);
 
 // view engine setup
 app.set('views', path.join(root, 'views'));
+
 app.set('view engine', 'hbs');
+app.engine('hbs', require('hbs').__express);
+
 app.set('view options', { layout: false });
+
+var index = require('./routes/index');
+var users = require('./routes/users');
+var contact = require('./routes/contact');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(root, 'public', 'favicon.ico')));
