@@ -1,0 +1,346 @@
+[
+	{
+		id: "intro"
+		name: "Home"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "transparent white text-center force-float-images-left"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.MainBlue.Floating.Left1.jpg"
+				bkgImgPos: "14% 0%"
+				boxes: [
+					{
+						position: "right"
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'Home'"
+							}
+							{
+								p: [
+									{
+										a: "Main Blue"
+										"@class": "button text-center special-font h2 narrow"
+										"@href": "#mainBlue.0"
+										"@du-smooth-scroll": ""
+									}
+								]
+								"@class": "text-center"
+							}
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'buyMainBlue'"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		name: "Concerts"
+		id: "concerts"
+		emptyEvent: "noConcert"
+		pages: [
+			{
+				type: "style2"
+				template: "page_default.html"
+				theme: "transparent white"
+				bkgImg: "images/MarionRampal.ByeByeBerlin.singing.right0.jpg"
+				bkgImgPos: "85% 40%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Concerts"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								"google-calendar": ""
+								"@id": "u8rqlh129povjraessq4jcp7ok@group.calendar.google.com"
+								"@empty-event": "noConcert"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "biography"
+		name:
+			fr: "Biographie"
+			en: "Biography"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "dark  text-justify align-top"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.Rome.péristyle0.jpg"
+				bkgImgPos: "37% 65%"
+				boxes: [
+					{
+						position: "right"
+						"mobile-header": [
+							{
+								h2: "Biographie"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								xtended: "include-markup"
+								filename: "Biography"
+								main: true
+								chapeau:
+									fr: "#### *Chanteuse, songwriter, Marion Rampal tisse un lien entre mémoire et invention, mot et mélodie, musiques populaires afro-américaines et racines classiques occidentales.*"
+									en: "#### *French Singer and songwriter Marion Rampal entwines memory and invention, words and melodies, folkloric musics and classical occidental roots.*"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "mainBlue"
+		name: "Main Blue"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "transparent white text-justify align-top"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.MainBlue.Floating.Right5.jpg"
+				bkgImgPos: "78% 5%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Main Blue"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								xtended: "include-markup"
+								filename: "MainBlue"
+								chapeau:
+									fr: "#### Sous le ciel d’une New Orleans réinventée, Marion Rampal a façonné des chansons fulgurantes et simples. Amours trahis, soulèvements, tempêtes, la matière de *Main Blue* est le bleu profond, celui qui baigne les bayous et qui imprègne toutes les musiques du Delta du Mississippi."
+									en: "#### Beneath the skies of a reinvented New Orleans, Marion Rampal has carved simple and searing songs. Betrayed love, tempest, uprising, this music is made of the deep blue that bathes the Louisiana Bayou, an expression of the many sounds and rhythms of the Delta."
+								main: true
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "lesecret"
+		name: "Le Secret"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"400"
+				"700"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "light black text-justify align-top"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.lombredansleau.couleur.right.jpg"
+				bkgImgPos: "37% 60%"
+				boxes: [
+					{
+						position: "right"
+						content: [
+							{
+								xtended: "include-markup"
+								filename: "LeSecret"
+								chapeau:
+									fr: '''
+										Depuis leur rencontre en 2009, __Marion Rampal & P.F.Blanchard__ travaillent à élaborer un langage commun de l’interprétation qui bouscule les codes établis. On les croise en duo ou en compagnie d’autres aventuriers comme Archie Shepp, Anne Paceo, Raphaël Imbert (album primé Victoires du Jazz), Raul Barboza, Le Salon Idéal...
+
+										## Le Secret
+										Le Secret, c’est celui que la chanteuse et le pianiste nous glissent à l’oreille avec cet objet sonore insolite et doux, mêlant les mondes et les époques.
+									'''
+									en: '''
+										Depuis leur rencontre en 2009, __Marion Rampal & P.F.Blanchard__ travaillent à élaborer un langage commun de l’interprétation qui bouscule les codes établis. On les croise en duo ou en compagnie d’autres aventuriers comme Archie Shepp, Anne Paceo, Raphaël Imbert (album primé Victoires du Jazz), Raul Barboza, Le Salon Idéal...
+
+										## Le Secret
+										Le Secret, c’est celui que la chanteuse et le pianiste nous glissent à l’oreille avec cet objet sonore insolite et doux, mêlant les mondes et les époques.
+									'''
+								main: true
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "listen"
+		name:
+			fr: "Écouter/Regarder"
+			en: "Listen/Watch"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"light"
+				"normal"
+				"bold"
+			]
+		pages: [
+			{
+				type: "style2"
+				template: "page_default.html"
+				theme: "red white text-justify align-top"
+				bkgImg: "images/MarionRampal.Rome.mur.palais.left.nb0.jpg"
+				bkgImgPos: "35% 35%"
+				boxes: [
+					{
+						position: "right"
+						"mobile-header": [
+							{
+								h2: [
+									{
+										i18n: [
+											"Écouter/Regarder"
+										]
+										"@lang": "fr"
+									}
+									{
+										i18n: [
+											"Listen/Watch"
+										]
+										"@lang": "en"
+									}
+								]
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								xtended: "include-markup"
+								filename: "Ecoutervoir"
+								main: true
+								chapeau:
+									fr: "#### Aujourd'hui, hier, il n'y a pas si longtemps... avec Pierre-François Blanchard, le Quatuor Manfred, Raphaël Imbert, Archie Shepp, Perrine Mansuy..."
+									en: "#### On this day, yesterday, not so long ago… With Pierre-François Blanchard, the Manfred Quartet, Raphaël Imbert, Archie Shepp, Perrine Mansuy..."
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "lyrics"
+		name: "Songbook"
+		googleFont:
+			family: "Marcellus SC"
+			styles: [
+				"light"
+				"normal"
+				"bold"
+			]
+		pages: [
+			{
+				type: "style2"
+				template: "page_default.html"
+				theme: "white text-justify align-top"
+				bkgImg: "images/mainblue.map.jpg"
+				headerColor: "#205F5A"
+				menuBkg: "rgba(255,255,255,0.6)"
+				bkgImgPos: "78% 71%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Songbook"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'lyrics'"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	{
+		id: "contacts"
+		name:
+			fr: "Contacts"
+			en: "Contact"
+		googleFont:
+			family: "Comfortaa"
+			styles: [
+				"light"
+				"normal"
+				"bold"
+			]
+		pages: [
+			{
+				type: "style2"
+				theme: "dark"
+				template: "page_default.html"
+				bkgImg: "images/MarionRampal.Passerelle.Chevaleret1.jpg"
+				bkgImgPos: "53% 60%"
+				boxes: [
+					{
+						position: "left"
+						"mobile-header": [
+							{
+								h2: "Contacts"
+								"@class": "special-font"
+							}
+						]
+						content: [
+							{
+								"contact-form": ""
+							}
+							{
+								marked: ""
+								"@compile": "true"
+								"@filename": "'Contacts'"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

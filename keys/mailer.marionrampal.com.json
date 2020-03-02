@@ -1,0 +1,15 @@
+{
+    "type": "OAuth2",
+    "scope": "https://mail.google.com/",
+    "user": "marionrampal.com@gmail.com",
+    "clientSecret": "hQDcSPRHcSlJIXHt9YDE8PYe",
+    "clientId": "76653466652-2cf710a6u3nskjtorhg6fl03dvcvt0hv.apps.googleusercontent.com",
+    "serviceRequestTimeout": 3600,
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "refreshToken":  "1/eASnSvB4hnv8Afv00voL0VqDYeK6S--pf_0ocJGCKvc",
+    "accessUrl": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mailer%40marionrampalcom-148320.iam.gserviceaccount.com",
+    "customHeaders": {},
+    "customParams": {}
+}

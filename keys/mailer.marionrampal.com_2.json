@@ -1,0 +1,8 @@
+{                                    
+    "type": "OAuth2",    
+    "scope": "https://mail.google.com/",
+    "user": "marionrampal.com@gmail.com",
+    "clientSecret": "hQDcSPRHcSlJIXHt9YDE8PYe",
+    "clientId": "76653466652-2cf710a6u3nskjtorhg6fl03dvcvt0hv.apps.googleusercontent.com",
+    "refreshToken": "1/BKEDaabuYkFJhbM6cDRH6ghxCDjSIauqRJWwlhv9mHo"
+}

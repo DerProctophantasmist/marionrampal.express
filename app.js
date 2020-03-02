@@ -1,14 +1,26 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const rfs = require('rotating-file-stream');
+const logger = require('./helpers/logger');
+
+const app = express();
 
 
-var app = express();
+var debug = require('debug')('main');
+/***********************
+ *  Logging ***********/
 
-var root = process.env.MR_EXPRESS_ROOT;
+//Generate UUID for request and add it to X-Request-Id header 
+const addRequestId = require('express-request-id')();
+app.use(addRequestId);
+
+
+
+
+const root = process.env.EXPRESS_ROOT;
 console.log("ROOT DIR: "+ root);
 
 // view engine setup
@@ -19,22 +31,24 @@ app.engine('hbs', require('hbs').__express);
 
 app.set('view options', { layout: false });
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var contact = require('./routes/contact');
+const index = require('./routes/index');
+const contact = require('./routes/contact');
+const admin = require('./routes/admin');
+
+
 
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(root, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(root, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 app.use('/contact', contact);
+app.use('/admin', admin);
+// app.use('/staging', staging);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

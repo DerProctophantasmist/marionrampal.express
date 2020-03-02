@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "main.js",
+  "sourceRoot": "..",
+  "sources": [
+    "data/main.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA;;EAAA,MAAA,GACI;IAAA,cAAA,EAAgB,6BAAhB;IACA,SAAA,EAAW,4BADX;IAEA,SAAA,EAAW,4BAFX;IAGA,KAAA,EAAO,eAHP;IAIA,UAAA,EACI;MAAA,aAAA,EACI;QAAA,IAAA,EAAM,wEAAN;QACA,IAAA,EAAM;MADN,CADJ;MAGA,KAAA,EAAO,oEAHP;MAIA,MAAA,EAAO;IAJP,CALJ;IAUA,eAAA,EAAkB,0BAVlB;IAWA,kBAAA,EAAqB,kCAXrB;IAYA,OAAA,EACI;MAAA,MAAA,EAAQ,6CAAR;MACA,aAAA,EAAe,mCADf;MAEA,MAAA,EAAQ;IAFR;EAbJ;;EAiBJ,MAAM,CAAC,OAAP,GAAiB;AAlBjB",
+  "sourcesContent": [
+    "config = \n    baseUrlDefault: \"http://www.marionrampal.com\"\n    baseUrlFr: \"http://fr.marionrampal.com\"\n    baseUrlEn: \"http://en.marionrampal.com\"\n    title: \"Marion Rampal\"\n    \"mainPage\": \n        \"description\": \n            \"fr\": \"Marion Rampal, chanteuse et songwriter. Actualités, concerts, disques…\"\n            \"en\": \"Marion Rampal, singer and songwriter. News, concerts, albums…\"\n        image: \"http://marionrampal.com/images/MarionRampal.MainBlue.clindoeil.jpg\"\n        footer:\"<small><li>&copy; Marion Rampal</li><li>Artwork on Main Blue: Marc Hernandez</li><li>Original photos: <a href='http://marierouge.fr/'>Marie Rouge</a>, Martin Sarrazac</li><li>Design and Implementation: Martin Sarrazac with a kickstart from <a href='http://html5up.net'>HTML5 UP</a></li></small>\"\n    \"prodPublicDir\" : \"/home/marion/public_html\",\n    \"stagingPublicDir\" : \"/home/marion/public_html/staging\"\n    contact: \n        origin: /http:\\/\\/([^.]+\\.)*marionrampal.(com|local)/\n        mailerKeyFile: 'keys/mailer.marionrampal.com.json'\n        mailTo: 'marionrampal@hotmail.com'\n    \nmodule.exports = config"
+  ]
+}

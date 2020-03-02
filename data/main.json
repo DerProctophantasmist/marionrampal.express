@@ -1,0 +1,13 @@
+{
+    "mainPage": {
+        "description": {
+            "fr": "Marion Rampal, chanteuse et songwriter. Actualités, concerts, disques…",
+            "en": "Marion Rampal, singer and songwriter. News, concerts, albums…"
+        }
+    },
+    "prodPublicDir" : "/home/marion/public_html",
+    "stagingPublicDir" : "/home/marion/public_html/staging",
+    "contact": {
+        "cors origin": "http:\\/\\/([^.]+\\.)*marionrampal.(com|local)"
+    }
+}

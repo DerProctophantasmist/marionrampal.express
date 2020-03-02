@@ -11,26 +11,26 @@
   },
   "dependencies": {
     "body-parser": "latest",
-    "bunyan": "latest",
-    "bunyan-express-serializer": "latest",
-    "cookie-parser": "latest",
-    "cors": "latest",
-    "debug": "latest",
+    "bunyan": "^1.8.12",
+    "bunyan-express-serializer": "^1.0.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "express": "latest",
-    "express-request-id": "latest",
-    "handlebars-delimiters": "latest",
-    "hbs": "latest",
+    "express-request-id": "^1.4.1",
+    "handlebars-delimiters": "^1.0.0",
+    "hbs": "^4.0.4",
     "nodemailer": "latest",
     "promise": "latest",
-    "rotating-file-stream": "latest",
+    "rotating-file-stream": "^1.4.1",
     "serve-favicon": "latest",
-    "supports-color": "latest",
+    "supports-color": "^7.0.0",
     "validator": "latest",
-    "vasync": "latest",
-    "verror": "latest",
+    "vasync": "^2.2.0",
+    "verror": "^1.10.0",
     "xoauth2": "latest"
   },
   "devDependencies": {
-    "hbsfy": "latest"
+    "hbsfy": "^2.8.1"
   }
 }

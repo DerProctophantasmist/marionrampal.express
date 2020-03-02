@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "init.js",
+  "sourceRoot": "..",
+  "sources": [
+    "helpers/init.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA,MAAA,EAAA,QAAA,EAAA,CAAA,EAAA,GAAA,EAAA,EAAA,EAAA,GAAA,EAAA,IAAA,EAAA,UAAA,EAAA;;EAAA,EAAA,GAAK,OAAA,CAAQ,IAAR;;EACL,IAAA,GAAO,OAAA,CAAQ,MAAR;;EACP,GAAA,GAAM,OAAA,CAAQ,mBAAR,CAA4B,CAAC;;EACnC,MAAA,GAAS;;EACT,IAAA,GAAO,OAAA,CAAQ,QAAR,EAJP;;;EAOA,QAAA,GAAW,IAAI,CAAC,IAAL,CAAU,OAAO,CAAC,GAAG,CAAC,YAAtB,EAAoC,WAApC;;AAGX;;IAAI,MAAA,GAAS,OAAA,CAAQ,QAAR,EAAb;GACA,aAAA;IAAM;IACJ,GAAA,GAAO,IAAI,IAAJ,CAAS,CAAT,EAAY,8BAAA,GAAiC,QAA7C;IACP,GAAG,CAAC,KAAJ,CAAU,GAAV;IACA,MAAM,IAHR;GAXA;;;;;;;;;;;;;;;EAgCA,UAAA,GAAa,QAAA,CAAC,QAAD,CAAA;WACX,QAAA,CAAS,IAAT,EAAc,MAAd;EADW;;EAGb,MAAM,CAAC,OAAP,GAAiB,CACb,UADa,EAnCjB;AAAA",
+  "sourcesContent": [
+    "fs = require('fs')\npath = require('path')\nlog = require('../helpers/logger').mainLogger\nconfig = null\nvErr = require(\"verror\")\n\n#the data file is actually a js file, richer syntax, the dynamic path means it won't be browserified (if we use that to bundle)\ndataFile = path.join(process.env.EXPRESS_ROOT, 'data/main')\n# configCallbacks = []\n\ntry config = require(dataFile)\ncatch e \n  err  = new vErr(e, \"Could not load config file: \" + dataFile ) \n  log.error(err)\n  throw err\n\n\n\n# fs.readFile dataFile, (err, data) ->\n#   if (err) \n#     log.info err, \"Could not read config from %s: \", dataFile \n#     throw err\n#   config = JSON.parse(data + \"\")\n#   log.info { config }, \"Loaded configuration\"\n\n#   for callback in configCallbacks\n#     callback(err, config)\n\n# readConfig = (callback) ->\n#     configCallbacks.push callback\n#     return\n\nreadConfig = (callback) ->\n  callback(null,config)\n\nmodule.exports = {\n    readConfig # takes one arg: a callback that witl receive the config object as argument when initialization is done\n}\n"
+  ]
+}
