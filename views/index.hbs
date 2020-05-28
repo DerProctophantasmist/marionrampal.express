@@ -23,13 +23,14 @@
         <meta property="og:url" content="{{baseUrlDefault}}"/>
         <!--[if lte IE 8]><script src="./assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="./assets/css/main.css" />
-        <link rel="stylesheet" href="./assets/css/bundle.css?d=20200302" />   
-        <script src="/config.data.js?d=20200302"></script>        
-        <script src="./assets/js/bundle.js?d=20200302"></script>     
+        <link rel="stylesheet" href="./assets/css/bundle.css?d=20200323" />   
+        <script src="/config.data.js?d=20200323"></script>        
+        <script src="./assets/js/bundle.js?d=20200323"></script>     
+        <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
         <meta name="description" property="og:description" content="{{#description}}{{/description}}" />
         <base href="{{basePath}}"></base>
     </head>
-    <body  viewport ng-class="{'mobile-layout':website.isMobileLayout()}" ng-init="website.locale.init('{{prefLang}}','{{forceLang}}')"> 
+    <body  viewport ng-class="{'mobile-layout':website.isMobileLayout()}" ng-init="website.init('{{prefLang}}','{{forceLang}}',{{allowEdit}})"> 
 <!--        <script>
   window.fbAsyncInit = function() {
     FB.init({

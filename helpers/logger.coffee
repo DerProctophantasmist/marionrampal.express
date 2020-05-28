@@ -1,9 +1,9 @@
 bunyan = require('bunyan')
 rfs = require('rotating-file-stream');
-path = require('path')
+path = require('path') 
 
 # create a rotating write stream
-accessLogStream = rfs('access.log', {
+accessLogStream = rfs.createStream('access.log', {
   interval: '3d', # rotate every 3 days
   maxFiles: 3,
   path: path.join(process.env.EXPRESS_ROOT, 'log')
@@ -16,11 +16,11 @@ loggerInstance = bunyan.createLogger(
         res: bunyan.stdSerializers.res
         err: bunyan.stdSerializers.err
     streams: [
-            stream: accessLogStream
+            stream: accessLogStream 
             level: 'info'
         ,
             stream: process.stdout
-            level: 'error'
+            level: 'info'
     ]
 )
 

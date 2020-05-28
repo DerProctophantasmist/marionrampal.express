@@ -103,6 +103,6 @@ doneInit = (err,result)->
     router.post '/', cors(corsOptions), handleMessage
   
 
-vasync.waterfall([require('../helpers/init').readConfig, init], doneInit )
+vasync.waterfall([require('../helpers/init').done, init], doneInit )
 
 module.exports = router;

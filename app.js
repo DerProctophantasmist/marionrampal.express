@@ -43,6 +43,7 @@ const admin = require('./routes/admin');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(formParser);
 app.use(express.static(path.join(root, 'public')));
 
 app.use('/', index);

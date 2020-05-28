@@ -30,9 +30,9 @@ catch e
 #     configCallbacks.push callback
 #     return
 
-readConfig = (callback) ->
-  callback(null,config)
+done = (callback) ->
+  callback(null, config)
 
 module.exports = {
-    readConfig # takes one arg: a callback that witl receive the config object as argument when initialization is done
+    done # takes one arg: a callback that will receive the config object as argument when initialization is done
 }
