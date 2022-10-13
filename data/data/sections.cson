@@ -38,7 +38,7 @@
 							{
 								marked: ""
 								"@compile": "true"
-								"@filename": "'buyMainBlue'"
+								"@filename": "'buy/buyMainBlue'"
 							}
 						]
 					}

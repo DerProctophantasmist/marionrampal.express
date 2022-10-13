@@ -10,20 +10,29 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "latest",
     "bunyan": "latest",
     "bunyan-express-serializer": "latest",
+    "cls-hooked": "latest",
+    "coffeescript": "latest",
     "cookie-parser": "latest",
     "cors": "latest",
+    "cson-parser": "latest",
     "debug": "latest",
     "express": "latest",
+    "express-http-context": "latest",
     "express-request-id": "latest",
+    "file-match": "^1.0.2",
+    "file-system": "^2.2.2",
     "handlebars-delimiters": "latest",
     "hbs": "latest",
+    "html-entities": "^2.3.2",
+    "marked": "^0.7.0",
+    "multer": "^1.4.2",
     "nodemailer": "latest",
     "promise": "latest",
     "rotating-file-stream": "latest",
     "serve-favicon": "latest",
+    "sitemap": "^7.1.1",
     "supports-color": "latest",
     "validator": "latest",
     "vasync": "latest",
@@ -31,6 +40,8 @@
     "xoauth2": "latest"
   },
   "devDependencies": {
-    "hbsfy": "latest"
+    "hbsfy": "latest",
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6"
   }
 }

@@ -70,7 +70,9 @@
     log = require('../helpers/logger').requestLogger(req);
     smtpTrans = nodemailer.createTransport({
       service: 'Gmail',
-      auth: auth
+      auth: auth,
+      logger: log,
+      debug: process.env.DEBUG ? true : false
     });
     emailFrom = req.body.emailFrom || "";
     subject = req.body.subject || "";
@@ -81,12 +83,12 @@
         status: 'fail'
       });
     }
-    //Mail options
+    //Mail options 
     mailOpts = {
       from: emailFrom, //grab form data from the request body object
       to: contactMail,
       subject: subject,
-      "reply-to": emailFrom, //grab form data from the request body object
+      replyTo: emailFrom, //grab form data from the request body object
       text: "de: " + emailFrom + "\n\n\n" + content
     };
     return smtpTrans.sendMail(mailOpts, function(error, response) {

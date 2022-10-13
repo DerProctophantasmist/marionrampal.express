@@ -6,9 +6,9 @@
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" ng-app="single.page.site" ng-controller="WebsiteCtrl as website" lang="fr" xml:lang="fr">
     <head>
-        <title>{{title}}</title>
+        <title>{{websiteTitle}}</title>
         <meta charset="utf-8" />
-        <link rel="alternate" href="{{baseUrlDefault}}{{#if page}}/{{page}}{{/if}}" hreflang="x-default" />
+        <link rel="alternate" href="{{baseUrlDefault}}{{#if git }}/{{page}}{{/if}}" hreflang="x-default" />
         <link rel="alternate" href="{{baseUrlEn}}{{#if page}}/{{page}}{{/if}}" hreflang="en" />
         <link rel="alternate" href="{{baseUrlFr}}{{#if page}}/{{page}}{{/if}}" hreflang="fr" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,17 +19,18 @@
         <meta property="og:locale:alternate"  content="en" />        
         <meta property="og:type" content="website" />
         <meta property="og:image" content="{{mainPage.image}}" />
-        <meta property="og:title" content="{{title}}" />
+        <meta property="og:title" content="{{websiteTitle}}" />
         <meta property="og:url" content="{{baseUrlDefault}}"/>
         <!--[if lte IE 8]><script src="./assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="./assets/css/main.css" />
-        <link rel="stylesheet" href="./assets/css/bundle.css?d=20200302" />   
-        <script src="/config.data.js?d=20200302"></script>        
-        <script src="./assets/js/bundle.js?d=20200302"></script>     
-        <meta name="description" property="og:description" content="{{#description}}{{/description}}" />
+        <link rel="stylesheet" href="./assets/css/main.css?d={{compileDate}}" />
+        <link rel="stylesheet" href="./assets/css/bundle.css?d={{compileDate}}" />   
+        <script src="/config.data.js?d={{compileDate}}"></script>        
+        <script src="./assets/js/bundle.js?d={{compileDate}}"></script>     
+        <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
+        <meta name="description" property="og:description" content="{{description}}" />
         <base href="{{basePath}}"></base>
     </head>
-    <body  viewport ng-class="{'mobile-layout':website.isMobileLayout()}" ng-init="website.locale.init('{{prefLang}}','{{forceLang}}')"> 
+    <body  viewport ng-class="{'mobile-layout':website.isMobileLayout()}" ng-init="website.init('{{prefLang}}','{{forceLang}}',{{allowEdit}}, {{nbrOfSections}})"> 
 <!--        <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -75,24 +76,29 @@
                     top: 50%;
                     width: 100vw;
                 }
-
+                .miniplayer {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                }
             </style>
 
             <!-- Header -->
             <header data-afkl-lazy-image='\{{website.headerImage()}}' data-afkl-lazy-image-options='{"background": true,"nolazy":true}' ng-style="{'background-position':(website.sections.topPage.bkgImgPos||''), 'color':website.headerColor()}" id="header" ng-class="{'alt':!website.isMobileLayout()}">
-
+                <span class="big" ng-if="false"> To display this website correctly you need to turn javascript on! </span>
+                <div style="display:none" ng-style="{'display':'block'}">
                 <!-- Logo -->
-                <h3  ng-if="!website.isMobileLayout()" class="title-banner special-font"><span>{{title}} — \{{website.sections.topPage.section.getname()}}</span></h3>
+                <h3  ng-if="!website.isMobileLayout()" class="title-banner special-font"><span>{{bannerTitle}} — \{{website.sections.topPage.section.getname()}}</span></h3>
 
                 <!-- Nav -->
                 <nav id="nav" ng-style="{'background-color':website.menuBackground()}">
                     <ul>                         
                         <li class="special clickable menuToggle">
-                            <a left-aside mdfile="keepInTouch" ><span>newsletter</span><span class="icon fa-facebook"></span><span class="icon fa-youtube"></span><span class="icon fa-instagram"></span><span>…</span>
+                            <a left-aside mdfile="keepInTouch" ><span class="icon fa-facebook"></span><span class="icon fa-youtube"></span><span class="icon fa-instagram"></span><span>…</span>
                             </a>
                         </li>
                         <li ng-controller="LangPickCtrl as vm" class="menuToggle clickable">
-                            <a ng-click="vm.changeLocale()"><span ng-class="vm.classShowFlag()"></span>  \{{vm.selectedLocale}}</a>
+                            <a ng-click="vm.changeLocale()"><span ng-class="vm.classShowFlag()"></span>  \{{vm.selectedLocale.substring(0, vm.selectedLocale.indexOf(" "))}}</a>
                         </li>
                         <li class="special clickable">
                             <a main-menu class="menuToggle"><span>Menu</span>
@@ -106,13 +112,14 @@
                         </li>
                     </ul>
                 </nav>
+                </div>
+                <div  class="miniplayer" ng-show="website.sections.topPage === website.sections.data[0].pages[0]"><marked filename="'bandcamp.mini.md'"></marked></div>
 
             </header>
 
             <!-- Intro -->
-            <section ng-repeat='section in website.sections.data' ng-if="website.displaySection(section.id)"  id="\{{section.id}}" section="section" ng-class="'section-' + section.id" >            
-                <x-page ng-repeat='page in section.pages' ng-include="page.template" ng-init="pageIndex = $index"></x-page>
-            </section>
+
+            {{includeRoot "sections.md"}}
 
 
             <!-- Footer -->
