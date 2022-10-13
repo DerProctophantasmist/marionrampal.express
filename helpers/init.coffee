@@ -4,6 +4,8 @@ log = require('../helpers/logger').mainLogger
 config = null
 vErr = require("verror")
 
+{createGlobalCache} = require '../helpers/cache'
+
 #the data file is actually a js file, richer syntax, the dynamic path means it won't be browserified (if we use that to bundle)
 dataFile = path.join(process.env.EXPRESS_ROOT, 'data/main')
 # configCallbacks = []
@@ -30,9 +32,24 @@ catch e
 #     configCallbacks.push callback
 #     return
 
-done = (callback) ->
-  callback(null, config)
+readConfig = (callback) ->
+  callback(null,config)
+
+setCompileDate = ()->
+  config.compileDate = Date.now()
+
+doneCaching = ( err, results ) ->
+    if err
+      log.error new VErr(), "Failed to cache data at init"
+    else
+      log.info 
+        message: "Data has been cached at init."
+
+readConfig (err, config) ->
+  if err then throw new Verr(err, "Failed to load config before caching")
+  createGlobalCache(config.prodPublicDir+ "/data/",config.entryFile, doneCaching)
 
 module.exports = {
-    done # takes one arg: a callback that will receive the config object as argument when initialization is done
+    readConfig # takes one arg: a callback that witl receive the config object as argument when initialization is done
+    setCompileDate
 }

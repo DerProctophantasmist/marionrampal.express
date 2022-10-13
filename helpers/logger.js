@@ -8,8 +8,9 @@
 
   path = require('path');
 
+  
   // create a rotating write stream
-  accessLogStream = rfs('access.log', {
+  accessLogStream = rfs.createStream('access.log', {
     interval: '3d', // rotate every 3 days
     maxFiles: 3,
     path: path.join(process.env.EXPRESS_ROOT, 'log')
@@ -29,7 +30,7 @@
       },
       {
         stream: process.stdout,
-        level: 'error'
+        level: 'info'
       }
     ]
   });

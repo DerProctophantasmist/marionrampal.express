@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const rfs = require('rotating-file-stream');
 const logger = require('./helpers/logger');
 
@@ -40,8 +39,8 @@ const admin = require('./routes/admin');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(root, 'public', 'favicon.ico')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(formParser);
 app.use(express.static(path.join(root, 'public')));

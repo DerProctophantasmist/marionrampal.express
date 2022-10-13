@@ -59,6 +59,8 @@ handleMessage = (req, res, next) ->
   smtpTrans = nodemailer.createTransport({
     service: 'Gmail',
     auth: auth
+    logger: log
+    debug: if process.env.DEBUG  then true else false
   })  
   emailFrom = req.body.emailFrom || "";
   subject = req.body.subject || "";
@@ -67,12 +69,12 @@ handleMessage = (req, res, next) ->
   if !validator.isEmail(emailFrom)
     return res.status(400).json {txt: 'Email ' + emailFrom + ' invalide', status: 'fail'}
 
-  #Mail options
+  #Mail options 
   mailOpts = 
     from: emailFrom , #grab form data from the request body object
     to: contactMail,
     subject: subject,        
-    "reply-to": emailFrom, #grab form data from the request body object
+    replyTo: emailFrom, #grab form data from the request body object
     text: "de: " + emailFrom + "\n\n\n" + content
   
 
@@ -103,6 +105,6 @@ doneInit = (err,result)->
     router.post '/', cors(corsOptions), handleMessage
   
 
-vasync.waterfall([require('../helpers/init').done, init], doneInit )
+vasync.waterfall([require('../helpers/init').readConfig, init], doneInit )
 
 module.exports = router;

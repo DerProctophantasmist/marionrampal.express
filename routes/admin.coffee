@@ -8,12 +8,18 @@ log = mainLog = require('../helpers/logger').mainLogger
 fs = require('file-system');
 path=require('path')
 formParser=require('multer');
-markdownFiles = require('../helpers/markdownContent')
 
 
-#hbs = require('hbs')
+
+
+require('../helpers/marked.utils')
+
+{createGlobalCache} = require '../helpers/cache'
+ 
+
 prodDir = null
-stagingDir = null 
+stagingDir = null
+entryFile = null
 renderError = (err) -> log.error(err)  
 
 folder = (subDir) ->
@@ -65,7 +71,7 @@ commit = (req, res, next) ->
             images.sync
           ]
         ,
-        doneCommit(res, req, next)
+        doneCommit(req,res,next)
     )
     return
 
@@ -78,27 +84,23 @@ unstage = (req, res, next) ->
     data = folder('data')
     images = folder('images')
     vasync.parallel(
-          'funcs': [
-            data.unstage,
+          'funcs': [data.unstage,
             images.unstage
-          ]
-        ,
-        doneUnstage(res, req, next)
+          ],
+        doneUnstage(req,res,next)
     )
     return
   
 
-doneCommit = (res, req, next) -> 
+doneCommit = (req,res,next) -> 
   ( err, results ) ->
     if err
       renderError new VErr(err, "Failed to commit changes")
     else
-      res.render('ok', { 
-        message: "Data and images from " + stagingDir + " have been saved to the website"
-      })
+      next()
 
 
-doneUnstage = (res, req, next) -> 
+doneUnstage = (req,res,next) -> 
   ( err, results ) ->
     if err
       renderError new VErr(err, "Failed to unstage")
@@ -108,6 +110,18 @@ doneUnstage = (res, req, next) ->
       })
   
 
+doCache = (req,res,next) ->
+  createGlobalCache("#{prodDir}/data/",entryFile, doneCaching(req,res,next))
+  
+doneCaching = (req,res,next) -> 
+  ( err, results ) ->
+    if err
+      renderError new VErr(err, "Failed to cache commited data ")
+    else
+      require('../helpers/init').setCompileDate()
+      res.render('ok', { 
+        message: "Data and images of the staging area have been commited and cached."
+      })
 
 preUpload = (req, res, next) ->
   log = require('../helpers/logger').requestLogger(req)
@@ -143,16 +157,19 @@ postUpload = (req, res, next) ->
 
 
 onInit= (_,config) ->
-  prodDir = config.prodPublicDir if !(prodDir = process.env.PROD_PUBLIC_DIR)
-  stagingDir = config.stagingPublicDir if !(stagingDir = process.env.STAGING_PUBLIC_DIR)
+  #todo: add a middleware in app.js that adds the config object to req so that it is accessible from the callbacks without hassle
+  # for now hack it with globals:
+  prodDir = config.prodPublicDir
+  stagingDir = config.stagingPublicDir
+  entryFile = config.entryFile
   if prodDir == null || stagingDir == null then throw new VErr("config not loaded.")
   # commit changes in the staging area to the production website: 
-  router.post( '/commit', commit)
+  router.post( '/commit', commit, doCache)
   router.post( '/unstage', unstage)
   router.post('/editfile/*', preUpload, upload.single("file"), postUpload)
 
 
 
-require('../helpers/init').done(onInit)
+require('../helpers/init').readConfig(onInit)
 
 module.exports = router
