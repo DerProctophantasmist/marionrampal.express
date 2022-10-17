@@ -12,18 +12,18 @@ localizeFilename = (filename) ->
   filename = decodeURIComponent(filename)
   if filename.substr(-3) != '.md' then filename + '.' + markedRenderer.get('language') + '.md' else filename
 
-markdownLinkTo = (url, chapeau, inline) ->
+markdownLinkTo = (content) ->
   if markedRenderer.get('resolvingMarkdownLinks')  == 1 
-    if !markedRenderer.get("file:"+url)
-      return cacheFile(url)
+    if !markedRenderer.get("file:"+content.filename)
+      return cacheFile(content.filename)
     return '' #ok, already cached
   if markedRenderer.get('resolvingMarkdownLinks') == 2  #done resolving links
     return """
     <include-markup content="{
-        &quot;filename&quot;:&quot;#{url}&quot;,
-        &quot;chapeau&quot;:&quot;#{chapeau.replace(/[\n\\\"]/g,escape)}&quot;,
-        &quot;inline&quot;:#{if inline then 'true' else 'false'}
-      }" popup-links="popupLinks">#{markedRenderer.get("file:"+url)}</include-markup>
+        &quot;filename&quot;:&quot;#{content.filename}&quot;,
+        &quot;chapeau&quot;:&quot;#{content.chapeau}&quot;,
+        &quot;inline&quot;:#{if content.inline then 'true' else 'false'}
+      }" popup-links="popupLinks">#{markedRenderer.get("file:"+content.filename)}</include-markup>
     """
   log.error new VErr(), "We should never be here"
 
@@ -31,15 +31,15 @@ markdownLinkTo = (url, chapeau, inline) ->
 # we do a two pass rendering: first an assynchronous caching of all the files referenced in the markdown
 # then a synchronous rendering calling marked(data) recursively on the cached files
 # obviously this is not optimal: at the very least we should also be caching the result
-markdownEmbed = (url, title) ->
+markdownEmbed = (content) ->
   if markedRenderer.get('resolvingMarkdownLinks')  == 1 
-    if !markedRenderer.get("file:"+url)
-      return cacheFile(url)
+    if !markedRenderer.get("file:"+content.filename)
+      return cacheFile(content.filename)
     return "" #ok, already cached
   if markedRenderer.get('resolvingMarkdownLinks') == 2  #done resolving links
     return """
-    <div marked compile=true prerendered=true filename="'#{url}'">
-      #{marked(markedRenderer.get("file:"+url))}
+    <div marked compile=true prerendered=true filename="'#{content.filename}'">
+      #{marked(markedRenderer.get("file:"+content.filename))}
     </div>
     """
   log.error new VErr(), "We should never be here"
@@ -49,7 +49,7 @@ isFirstPass = ()->
 
 includeSectionFile = (url, section) ->
   if isFirstPass() then sections.registerSection(section)
-  return markdownEmbed(url)
+  return markdownEmbed({filename:url})
 
 
 cacheFile = (url)->
@@ -74,12 +74,12 @@ cacheFile = (url)->
 renderMarkdown = (url, callback) ->
   markedRenderer.set('resolvingMarkdownLinks', 1)
   markedRenderer.set('doneResolving', doneResolving(url, callback))
-  markdownEmbed(url)
+  markdownEmbed({filename:url})
 
 doneResolving = (url, callback) ->
   ()->
     markedRenderer.set('resolvingMarkdownLinks', 2)
-    cache = markdownEmbed(url)
+    cache = markdownEmbed({filename:url})
     callback(cache)
 
 registerSectionData = (sectionData) ->
@@ -91,7 +91,7 @@ module.exports =
   markdownLinkTo:markdownLinkTo
   markdownEmbed:markdownEmbed
   markedRenderer:markedRenderer
-  includePageFile:markdownEmbed
+  includePageFile:(filename) -> markdownEmbed({filename})
   includeSectionFile:includeSectionFile
   renderMarkdown:renderMarkdown
   registerSectionData:registerSectionData

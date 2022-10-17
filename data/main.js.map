@@ -1,7 +1,7 @@
 {
   "version": 3,
   "file": "main.js",
-  "sourceRoot": "../../../../extra/cloud/www.archieshepp.org",
+  "sourceRoot": "../../../../extra/cloud/express.marionrampal",
   "sources": [
     "../../../martin/cloud/express.marionrampal/data/main.coffee"
   ],
