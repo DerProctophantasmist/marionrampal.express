@@ -20,6 +20,6 @@ config =
         origin: /https?:\/\/([^.]+\.)*marionrampal.(com|local)/
         mailerKeyFile: 'keys/mailer.marionrampal.com.json'
         mailTo: 'marionrampal.hotmail.com;m.sarrazac@gmail.com'    
-    googleApiKey: "AIzaSyA7gcU0ED3WJMBM4v6tVtmpLaACu3EQt_A"
+    googleApiKey: require("./gitignore.keys").googleApiKey
     
 module.exports = config
