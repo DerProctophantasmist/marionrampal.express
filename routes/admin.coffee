@@ -43,7 +43,7 @@ folder = (subDir) ->
 
 
 filepath = (rootDir, filepath) ->
-  filter = fs.fileMatch(stagingDir + '/data/**/*.md')
+  filter = fs.fileMatch(stagingDir + '/data/**/*.{md,cson}')
   absPath = path.join(rootDir, filepath)
   log.info({"full path":absPath})
   file = 

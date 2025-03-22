@@ -1,14 +1,14 @@
-config = 
+config =
     baseUrlDefault: "https://www.marionrampal.com"
     baseUrlFr: "https://fr.marionrampal.com"
     baseUrlEn: "https://en.marionrampal.com"
     bannerTitle: "Marion Rampal"
     compileDate: "20220216" #forces redownloading of assets by client when changed
-    "mainPage": 
-        "description": 
+    "mainPage":
+        "description":
             "fr": "Marion Rampal, chanteuse et songwriter. Actualités, concerts, disques…"
             "en": "Marion Rampal, singer and songwriter. News, concerts, albums…"
-        "websiteTitle": 
+        "websiteTitle":
             "fr": "Site officiel de Marion Rampal"
             "en": "Official website of Marion Rampal"
         image: "https://marionrampal.com/images/MarionRampal.MarieRouge.dorée.sourire.right.jpg"
@@ -16,9 +16,10 @@ config =
     "prodPublicDir" : "/home/marion/public_html",
     "stagingPublicDir" : "/home/marion/public_html/staging"
     entryFile:"sections.md"
-    contact: 
+    contact:
         origin: /https?:\/\/([^.]+\.)*marionrampal.(com|local)/
         mailerKeyFile: 'keys/mailer.marionrampal.com.json'
-        mailTo: 'marionrampal.hotmail.com;m.sarrazac@gmail.com'
+        mailTo: 'marionrampal.hotmail.com;m.sarrazac@gmail.com'    
+    googleApiKey: "AIzaSyA7gcU0ED3WJMBM4v6tVtmpLaACu3EQt_A"
     
 module.exports = config
